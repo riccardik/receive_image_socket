@@ -89,12 +89,12 @@ def sub_server(indirizzo, backlog=1): # blacklog quante richieste può accettare
         print("received:", count)     
         #file.close()  
         #data2 =  np.int8(data1)
-        rospy.sleep(0.01)
+        
         img = CompressedImage()
         img.data = data1
         img.format = "jpg"
         image_pub.publish(img)
-        
+        rospy.sleep(0.01)
         """ np_arr = np.fromstring(ros_data.data, np.uint8)
         image_np = cv2.imdecode(np_arr, cv2.CV_LOAD_IMAGE_COLOR) """
         
