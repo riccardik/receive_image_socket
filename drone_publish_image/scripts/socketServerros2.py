@@ -106,20 +106,17 @@ if __name__ == "__main__":
     '''
 
     rospy.init_node('image_publisher', anonymous=True)
-    image_pub = rospy.Publisher("/output/image_raw/compressed", CompressedImage)
+    image_pub = rospy.Publisher("/output/image_raw/compressed", CompressedImage, queue_size=1)
 
-    """ hostname = socket.gethostname()
-	## getting the IP address using socket.gethostbyname() method
-    ip_address = socket.gethostbyname(hostname) """
-    #print("Hostname: {hostname}")
-	## gettin and printing the hostname and ip_address
-
-    #print([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0])
-    ip_add = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
     
+	## getting the IP address 
+    ip_add = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
     print("IP Address: ", ip_add)
-    #sub_server(("192.168.1.195",8888)) 
+    
+    #creating the server at the specified ip and port
     sub_server((ip_add,8888))
-	#  "" = prende l'IP della macchina su cui sta girando però la porta deve essere specificata  
-	## getting the hostname by socket.gethostname() method
+
+    #uncomment this if the auto-recognition of the Ip doesn't work
+    #sub_server(("192.168.1.195",8888)) 
+	
 	
