@@ -47,8 +47,8 @@ def sub_server(indirizzo, backlog=1): # blacklog quante richieste può accettare
         sub_server(indirizzo, backlog=1)
         
     count = 0
-    path = os.path.dirname(os.path.abspath(__file__)) + '/imagesReceived'
-    print(path)
+    #path = os.path.dirname(os.path.abspath(__file__)) + '/imagesReceived'
+    #print(path)
     # path = 'D:\GroupProject\AndroidStudioProjects\GP-main\imagesReceived'
     while True:
         conn, indirizzo_client = s.accept() # accetto la richiesta di un client, 
